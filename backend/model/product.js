@@ -37,6 +37,7 @@ const productSchema = new mongoose.Schema({
     },
     ratings:[{
         star:Number,
+        comment:String,
         postedBy:{
             type:mongoose.Schema.Types.ObjectId,ref:"User"}
     }],
@@ -54,6 +55,10 @@ const productSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
+    totalRating:{
+        type:String,
+        default:0,
+    }
 
 },{timestamps:true});
 

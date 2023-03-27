@@ -11,6 +11,11 @@ const app = express();
 //routes api
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/product');
+const blogRoutes = require("./routes/blog");
+const categoryRoutes = require("./routes/category");
+const blogCategoryRoutes = require("./routes/blogCategory");
+const brandRoutes = require("./routes/brand");
+const couponRoutes = require("./routes/coupon");
 const {errorHandler,notFound} = require('./middleware/errorHandler');
 const port = process.env.PORT || 5050
 
@@ -25,6 +30,10 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth",userRoutes)
 app.use("/api/v1/product",productRoutes)
+app.use("/api/v1/blog",blogRoutes)
+app.use("/api/v1/blogcategory",blogCategoryRoutes);
+app.use("/api/v1/brand",brandRoutes);
+app.use("/api/v1/coupon",couponRoutes);
 
 //middleware
 
