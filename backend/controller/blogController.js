@@ -112,7 +112,7 @@ const likeBlog = asyncHandler(async (req, res) => {
       const blog = await Blog.findByIdAndUpdate(
         blogId,
         {
-          $push: { likes: loginUser },
+          $addToSet: { likes: loginUser },
           isLiked: true,
         },
         { new: true }

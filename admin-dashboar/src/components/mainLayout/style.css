@@ -1,0 +1,27 @@
+.sidebar{
+    background-color: rgb(185, 204, 198) !important;
+    height: 100vh;
+}
+
+.menu{
+    background-color: inherit;
+    color: #000;
+  
+}
+
+/* -----header----- */
+.header{
+    padding: 0;
+    background-color: rgb(197, 241, 227) !important;
+}
+
+.logo{
+    background: inherit;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: 'Roboto';
+}
