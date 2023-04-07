@@ -3,7 +3,7 @@ const { createBrand, getAllBrand, getBrand, updateBrand, deleteBrand } = require
 const { authMiddleware, isAdmin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
-router.get('/all',getAllBrand);
+router.get('/',getAllBrand);
 router.get('/:id',getBrand)
 router.post('/',authMiddleware, isAdmin, createBrand)
 router.put('/:id',authMiddleware, isAdmin, updateBrand)

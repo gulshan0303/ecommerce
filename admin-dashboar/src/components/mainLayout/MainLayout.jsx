@@ -22,6 +22,10 @@ import { useSelector } from "react-redux";
 const { Header, Sider, Content } = Layout;
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [open,setOpen] = useState(false);
+  const handleClick =() => {
+     setOpen(!open)
+  }
   const admin = useSelector(state => state.auth?.user?.findAdmin);
   const name = admin?.firstName +" "+ admin?.lastName;
   const {
@@ -200,6 +204,7 @@ const MainLayout = () => {
                 id="dropdownMenuLink"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+               
               >
                 <h5 className="mb-0">{name}</h5>
                 <p className="mb-0">{admin?.email}</p>

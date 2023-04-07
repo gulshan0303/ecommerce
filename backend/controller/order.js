@@ -75,9 +75,21 @@ const getOrder = asyncHandler(async(req, res) => {
     } catch (error) {
       throw new Error(error);
     }
-  });  
+  });
+  
+  const getAllOrders = asyncHandler(async (req, res) => {
+    try {
+      const alluserorders = await Order.find()
+        .populate("products.product")
+        .populate("orderby")
+        .exec();
+      res.json(alluserorders);
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
 
 
   
 
-module.exports ={createOrder,getOrder,updateOrder}
+module.exports ={createOrder,getOrder,updateOrder,getAllOrders}

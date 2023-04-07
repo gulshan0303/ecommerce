@@ -30,6 +30,23 @@ const cloudinaryUpload = async (fileToUpload) => {
       throw new Error("Could not upload file to Cloudinary");
     }
   };
+  const cloudinaryDeleteImg = async (fileToDelete) => {
+    return new Promise((resolve) => {
+      cloudinary.uploader.destroy(fileToDelete, (result) => {
+        resolve(
+          {
+            url: result.secure_url,
+            asset_id: result.asset_id,
+            public_id: result.public_id,
+          },
+          {
+            resource_type: "auto",
+          }
+        );
+      });
+    });
+  };
+  
   
 
-module.exports = cloudinaryUpload;
+module.exports = {cloudinaryUpload,cloudinaryDeleteImg};

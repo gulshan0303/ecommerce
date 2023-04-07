@@ -13,9 +13,13 @@ const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/product');
 const blogRoutes = require("./routes/blog");
 const categoryRoutes = require("./routes/category");
+const colorRoutes = require("./routes/color");
 const blogCategoryRoutes = require("./routes/blogCategory");
 const brandRoutes = require("./routes/brand");
 const couponRoutes = require("./routes/coupon");
+const uploadRoutes = require("./routes/upload");
+const enquiryRoutes = require("./routes/enquiry");
+// const orderRoutes = require("./routes/order");
 const {errorHandler,notFound} = require('./middleware/errorHandler');
 const port = process.env.PORT || 5050
 
@@ -34,6 +38,11 @@ app.use("/api/v1/blog",blogRoutes)
 app.use("/api/v1/blogcategory",blogCategoryRoutes);
 app.use("/api/v1/brand",brandRoutes);
 app.use("/api/v1/coupon",couponRoutes);
+app.use("/api/v1/color",colorRoutes);
+app.use("/api/v1/upload",uploadRoutes);
+app.use("/api/v1/enquiry",enquiryRoutes);
+app.use("/api/v1/category",categoryRoutes);
+// app.use("/api/v1/order",orderRoutes);
 
 //middleware
 

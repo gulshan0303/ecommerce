@@ -1,5 +1,5 @@
 const express = require('express');
-const { createOrder, getOrder, updateOrder } = require('../controller/order');
+const { createOrder, getOrder,getAllOrders, updateOrder } = require('../controller/order');
 const { register,loginController, getAll, getUserById, updateUser, deleteUser, blockUser, unblockUser, handleToken, logOut, updatePassword, forgotPassword, resetPassword, adminController, getWishList, saveAddress, addToCart, getCart, removeCart, applyCoupon} = require('../controller/userConreoller');
 const {authMiddleware, isAdmin} = require('../middleware/authMiddleware');
 
@@ -18,6 +18,7 @@ router.post("/register",register)
  router.get("/logout",logOut)
  router.get("/wishlist",authMiddleware, getWishList)
  router.get("/order",authMiddleware, getOrder)
+ router.get("/order/all",authMiddleware, getAllOrders)
  router.get("/cart",authMiddleware, getCart)
  router.get("/:id",authMiddleware,isAdmin, getUserById)
  router.put("/order/update/:id",authMiddleware,isAdmin,updateOrder)
