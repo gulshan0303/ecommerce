@@ -50,11 +50,12 @@ const createOrder = asyncHandler(async(req, res) => {
   });
 
 const getOrder = asyncHandler(async(req, res) => {
+  console.log("first")
     const { _id } = req.user;
     validateUserId(_id);
    
     try {
-     const order = await Order.findOne({orderBy:_id}).populate("product.product").exec();
+     const order = await Order.findOne({orderBy:_id}).populate("products.product").exec();
      res.json({order})
     } catch (error) {
       throw new Error(error);
@@ -81,7 +82,7 @@ const getOrder = asyncHandler(async(req, res) => {
     try {
       const alluserorders = await Order.find()
         .populate("products.product")
-        .populate("orderby")
+        .populate("orderBy")
         .exec();
       res.json(alluserorders);
     } catch (error) {
