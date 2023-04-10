@@ -21,6 +21,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
 import TermAndCondition from "./pages/TermAndCondition";
+import UserProfile from "./pages/UserProfile";
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
+            <Route path="profile" element={<UserProfile />} />
             <Route path="contact" element={<Contact />} />
             <Route path="product" element={<Store />} />
             <Route path="product/:id" element={<SingleProduct />} />

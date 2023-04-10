@@ -62,7 +62,7 @@ a {
 
 .header-top-strip {
   border-bottom: 1px solid var(--color-3b4149);
-  background-color: var(--color-131921);
+  background-color:rgb(114, 78, 114);
 }
 .header-upper {
   background-color: var(--color-131921);
@@ -718,7 +718,7 @@ footer .input-group-text {
   font-size: 14px;
 }
 .cart-col-2 {
-  width: 10%;
+  width: 5%;
 }
 .cart-col-3 {
   width: 15%;
@@ -742,4 +742,87 @@ footer .input-group-text {
   font-size: 16px;
   color: var(--color-777777);
 }
+
+.error{
+  color: red;
+  font-size: 12px !important;
+}
+.icons{
+  height: 30px !important;
+}
+
+.search_input{
+  margin-left: -5rem;
+  width: 60%;
+}
+
+.profile{
+  cursor: pointer;
+  position: relative;
+}
+
+.signout{
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  padding:0.3rem 1rem;
+  height: auto;
+  background-color: #fff;
+  position: absolute;
+  top: 7rem;
+  right: 3.6rem;
+  color:#000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* user profile */
+.profile-wrapper{
+  width: 300px;
+}
+.filter-card{
+  width: 300px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+
+/* home product murquee */
+.img{
+  max-width: 150px;
+ 
+}
+.img > img{
+  width: 100%;
+  height: 100%;
+}
+
+/* carousel section */
+/* .carousel{
+  height: 700px;
+}
+.carousel>img{
+ max-width: 100%;
+  height: 100%;
+} */
+.img1{
+  max-height: 300px;
+}
+.img1>img{
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
 /* Shipping page ends here */

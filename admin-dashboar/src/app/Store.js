@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducers from "../features/auth/authSlice.jsx";
 import customerReducer from "../features/customers/customersSlice.js"
 import productReducer from "../features/product/productSlice"
@@ -10,6 +10,9 @@ import enquiryReducer from "../features/enquiry/EnqSlice.js";
 import couponReducer from "../features/coupon/couponSlice";
 import blogReducer from "../features/blogs/blogSlice.jsx";
 import blogCategoriesReducer from "../features/blogcategory/blogCategorySlice.jsx";
+
+
+
 
 export const store = configureStore({
     reducer: {

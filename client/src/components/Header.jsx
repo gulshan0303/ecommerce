@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import compare from "../images/compare.svg";
@@ -6,25 +6,23 @@ import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
+import {useSelector} from "react-redux"
+import "../App.css"
 const Header = () => {
+  const [open , setOpen] = useState(false)
+  const user = useSelector((state) => state.user?.user?.findUser)
+ const fullName = user?.firstName+" "+user?.lastName;
   return (
     <>
-      <header className="header-top-strip py-3">
+      <header className="header-top-strip py-1">
         <div className="container-xxl">
           <div className="row">
             <div className="col-6">
               <p className="text-white mb-0">
-                Free Shipping Over ₹500 & Free Returns
+               <marquee behavior="scroll" direction="left-right" width="100%"> Free Shipping Over ₹500 & Free Returns</marquee>
               </p>
             </div>
-            <div className="col-6">
-              <p className="text-end text-white mb-0">
-                Hotline:
-                <a className="text-white" href="tel:+91 8264954234">
-                  +91 9302067441
-                </a>
-              </p>
-            </div>
+          
           </div>
         </div>
       </header>
@@ -32,15 +30,15 @@ const Header = () => {
         <div className="container-xxl">
           <div className="row align-items-center">
             <div className="col-2">
-              <h2>
+              <h3>
                 <Link className="text-white">Gk Store</Link>
-              </h2>
+              </h3>
             </div>
             <div className="col-5">
-              <div className="input-group">
+              <div className="input-group me-7 search_input">
                 <input
                   type="text"
-                  className="form-control py-2"
+                  className="form-control py-1 "
                   placeholder="Search Product Here..."
                   aria-label="Search Product Here..."
                   aria-describedby="basic-addon2"
@@ -57,7 +55,7 @@ const Header = () => {
                     to="/compare-product"
                     className="d-flex align-items-center gap-10 text-white"
                   >
-                    <img src={compare} alt="compare" />
+                    <img src={compare} alt="compare"  className='icons'/>
                     <p className="mb-0">
                       Compare <br /> Products
                     </p>
@@ -68,14 +66,14 @@ const Header = () => {
                     to="/wishlist"
                     className="d-flex align-items-center gap-10 text-white"
                   >
-                    <img src={wishlist} alt="wishlist" />
+                    <img src={wishlist} alt="wishlist" className='icons' />
                     <p className="mb-0">
                       Favourite <br /> wishlist
                     </p>
                   </Link>
                 </div>
-                <div>
-                  <Link
+                <div className='profile' onClick={() => setOpen(!open)}>
+                 {user ? <h5 style={{color:"#fff"}}>{fullName}</h5>:  <Link
                     to="/login"
                     className="d-flex align-items-center gap-10 text-white"
                   >
@@ -83,8 +81,10 @@ const Header = () => {
                     <p className="mb-0">
                       Log in <br /> My Account
                     </p>
-                  </Link>
+                  </Link> }
+               
                 </div>
+               
                 <div>
                   <Link
                     to="/cart"
@@ -93,15 +93,24 @@ const Header = () => {
                     <img src={cart} alt="cart" />
                     <div className="d-flex flex-column gap-10">
                       <span className="badge bg-white text-dark">0</span>
-                      <p className="mb-0">$ 500</p>
+                      
                     </div>
                   </Link>
                 </div>
+               
               </div>
+             
             </div>
           </div>
+         
         </div>
       </header>
+      {open && (
+                <div className="signout">
+                  <span>LogOut</span>
+                  <Link to ="/profile"><span>User Profile</span></Link>
+                </div>
+                 )}
       <header className="header-bottom py-3">
         <div className="container-xxl">
           <div className="row">
