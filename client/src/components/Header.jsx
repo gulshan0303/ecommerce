@@ -1,17 +1,29 @@
 import React, { useState } from 'react'
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link,useNavigate } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import compare from "../images/compare.svg";
 import wishlist from "../images/wishlist.svg";
 import user from "../images/user.svg";
-import cart from "../images/cart.svg";
+import cartImg from "../images/cart.svg";
 import menu from "../images/menu.svg";
-import {useSelector} from "react-redux"
+import {useSelector,useDispatch} from "react-redux"
 import "../App.css"
+import {logOut} from "../features/user/userSlice"
 const Header = () => {
   const [open , setOpen] = useState(false)
-  const user = useSelector((state) => state.user?.user?.findUser)
- const fullName = user?.firstName+" "+user?.lastName;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+   const wishList = useSelector((state) => state.products?.AddwishList?.wishList
+   )
+   const cart = useSelector((state) => state.user?.carts)
+//  const fullName = user?.firstName+" "+user?.lastName;
+const user = JSON.parse(localStorage.getItem('customer'))
+const fullName  = user?.findUser?.firstName+" "+user?.findUser?.lastName
+
+ const logoutHandle =() => {
+    dispatch(logOut());
+    navigate("/login");
+ }
   return (
     <>
       <header className="header-top-strip py-1">
@@ -90,9 +102,9 @@ const Header = () => {
                     to="/cart"
                     className="d-flex align-items-center gap-10 text-white"
                   >
-                    <img src={cart} alt="cart" />
+                    <img src={cartImg} alt="cart" />
                     <div className="d-flex flex-column gap-10">
-                      <span className="badge bg-white text-dark">0</span>
+                      <span className="badge bg-white text-dark">{cart?.length}</span>
                       
                     </div>
                   </Link>
@@ -107,7 +119,7 @@ const Header = () => {
       </header>
       {open && (
                 <div className="signout">
-                  <span>LogOut</span>
+                  <span onClick={logoutHandle} >LogOut</span>
                   <Link to ="/profile"><span>User Profile</span></Link>
                 </div>
                  )}

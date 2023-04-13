@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import ReactStars from "react-rating-stars-component";
@@ -10,8 +10,22 @@ import gr4 from "../images/gr4.svg"
 import gr3 from "../images/gr3.svg"
 import gr2 from "../images/gr2.svg"
 import gr from "../images/gr.svg"
+import {useDispatch,useSelector} from 'react-redux'
+import { getAllProducts } from "../features/product/ProductSlice";
 const OurStore = () => {
   const [grid, setGrid] = useState(4);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    getAllProduct()
+  },[])
+
+  const getAllProduct = () => {
+      dispatch(getAllProducts())
+  }
+
+  const productState = useSelector((state) => state.products?.products?.data)
+  console.log('productState', productState)
   return (
     <>
       <Meta title={"Our Store"} />
@@ -246,7 +260,7 @@ const OurStore = () => {
             </div>
             <div className="products-list pb-5">
               <div className="d-flex gap-10 flex-wrap">
-                <ProductCard grid={grid} />
+                <ProductCard grid={grid}  data={productState ? productState : []}/>
               </div>
             </div>
           </div>

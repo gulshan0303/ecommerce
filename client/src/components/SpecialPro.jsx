@@ -2,7 +2,7 @@ import React from 'react'
 import Container from './Container'
 import SpecialProduct from './SpecialProduct'
 
-const SpecialPro = () => {
+const SpecialPro = ({products}) => {
   return (
     <>
         <Container class1="special-wrapper py-5 home-wrapper-2">
@@ -12,10 +12,20 @@ const SpecialPro = () => {
           </div>
         </div>
         <div className="row">
-          <SpecialProduct />
-          <SpecialProduct />
-          <SpecialProduct />
-          <SpecialProduct />
+           {
+            products?.map((item,index) => {
+               return item?.tags === "special" ?  <SpecialProduct  key={index} brand = {item?.brand}
+               totalRating ={item?.totalRating}
+               title={item?.title}
+               price={item?.price}
+               quantity={item?.quantity}
+               sold={item?.sold}
+
+               /> : ""
+                 
+               
+            })
+           }
         </div>
       </Container>
     </>

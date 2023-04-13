@@ -34,19 +34,22 @@ const loginController = asyncHandler(async (req, res) => {
   const findUser = await User.findOne({ email });
 
   if (findUser && (await findUser.isPasswordMatch(password))) {
-    const user = {
-      id: findUser?._id,
-      firstName: findUser?.firstName,
-      lastName: findUser?.lastName,
-      email: findUser?.email,
-      mobile: findUser?.mobile,
-    };
+ 
     const refreshToken = generateRefreshToken(findUser._id);
     const updateUser = await User.findByIdAndUpdate(
       findUser._id,
       { refreshToken: refreshToken },
       { new: true }
     );
+
+    const user = {
+      id: findUser?._id,
+      firstName: findUser?.firstName,
+      lastName: findUser?.lastName,
+      email: findUser?.email,
+      mobile: findUser?.mobile,
+      token:refreshToken
+    };
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -57,7 +60,7 @@ const loginController = asyncHandler(async (req, res) => {
       .json({
         success: true,
         findUser: user,
-        token: generateToken(findUser?._id),
+        // token: generateToken(findUser?._id),
       });
   } else {
     throw new Error("Invalid credentials!!");
@@ -326,27 +329,16 @@ const getWishList = asyncHandler(async(req,res) => {
 //add to cart
 const addToCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  const { cart } = req.body;
+  validateUserId(_id);
+  const { productId,price,quantity,color } = req.body;
   try {
-    const products = [];
-    const user = await User.findById(_id);
-    for (let i = 0; i < cart.length; i++) {
-      const obj = {};
-      obj.product = cart[i]._id;
-      obj.color = cart[i].color;
-      obj.count = cart[i].count;
-      let getPrice = await Product.findById(cart[i]._id).select('price').exec();
-      obj.price = getPrice.price;
-      products.push(obj);
-    }
-    let cartTotal = 0;
-    for (let i = 0; i < products.length; i++) {
-      cartTotal += products[i].price * products[i].count;
-    }
+   
     const newCart = await new Cart({
-      products,
-      cartTotal,
-      orderBy: user?._id,
+      userId:_id,
+      productId,
+      price,
+      quantity,
+      color
     }).save();
     res.json(newCart);
   } catch (error) {
@@ -359,8 +351,8 @@ const getCart = asyncHandler(async(req,res) => {
   const {_id} = req.user;
   validateUserId(_id)
   try {
-      const cart = await Cart.findOne({orderBy:_id}).populate('products.product');
-      console.log('cart', cart)
+      const cart = await Cart.find({userId:_id}).populate('productId').populate("color");
+      // console.log('cart', cart)
        res.json(cart);
   } catch (error) {
       throw new Error(error) 

@@ -1,10 +1,13 @@
 const fs = require("fs");
 const asyncHandler = require("express-async-handler");
 
-const {cloudinaryUpload,cloudinaryDeleteImg,} = require("../utils/clodinary");
+const {
+  cloudinaryUploadImg,
+  cloudinaryDeleteImg,
+} = require("../utils/clodinary");
 const uploadImages = asyncHandler(async (req, res) => {
   try {
-    const uploader = (path) => cloudinaryUpload(path, "images");
+    const uploader = (path) => cloudinaryUploadImg(path, "images");
     const urls = [];
     const files = req.files;
     for (const file of files) {

@@ -41,11 +41,10 @@ const productSchema = new mongoose.Schema({
         postedBy:{
             type:mongoose.Schema.Types.ObjectId,ref:"User"}
     }],
-    color:{
-        type:String,
-        required:true
-        // enum:['Black','Brown','Red']
-    },
+    color:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Color"
+    }],
     brand:{
         type:String,
         required:true

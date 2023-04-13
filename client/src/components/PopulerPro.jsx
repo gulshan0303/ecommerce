@@ -2,9 +2,9 @@ import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 import Watch from "../images/watch.jpg";
-
-const SpecialProduct = (props) => {
-  const { title, quantity, price, totalRating, brand, sold } = props;
+import "./style.css"
+const PopulerPro = (props) => {
+  const { title, quantity, price, totalRating, brand, sold,images } = props;
   const withoutDiscount = price * 1.2;
 
   // Calculate progress bar width percentage
@@ -15,8 +15,8 @@ const SpecialProduct = (props) => {
       <div className="col-6 mb-3">
         <div className="special-product-card">
           <div className="d-flex justify-content-between">
-            <div>
-              <img src={Watch} className="img-fluid" alt="watch" />
+            <div className="poplerProduct_img">
+              <img src={images[0]?.url ?images[0]?.url : Watch } className="img-fluid" alt="watch" />
             </div>
             <div className="special-product-content">
               <h5 className="brand">{brand}</h5>
@@ -64,4 +64,4 @@ const SpecialProduct = (props) => {
   );
 };
 
-export default SpecialProduct;
+export default PopulerPro;

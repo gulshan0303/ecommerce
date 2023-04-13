@@ -51,10 +51,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
 const getProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate("color");
     res.status(201).json({ success: true, product });
   } catch (error) {
-    throw new Error(error);
+    res.status(500).json({ success: false, error: "Failed to fetch product" });
   }
 });
 
@@ -207,7 +207,7 @@ const uploadImages = asyncHandler(async (req, res) => {
       fs.unlinkSync(path);
     }
     const findProduct = await Product.findByIdAndUpdate(id, {
-      images: urls.map((file) => {
+      image: urls.map((file) => {
         return file;
       }),
     });

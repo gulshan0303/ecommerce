@@ -11,7 +11,7 @@ const app = express();
 //routes api
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/product');
-const blogRoutes = require("./routes/blog");
+ const blogRoutes = require("./routes/blog");
 const categoryRoutes = require("./routes/category");
 const colorRoutes = require("./routes/color");
 const blogCategoryRoutes = require("./routes/blogCategory");
@@ -34,7 +34,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth",userRoutes)
 app.use("/api/v1/product",productRoutes)
-app.use("/api/v1/blog",blogRoutes)
+  app.use("/api/v1/blog",blogRoutes)
 app.use("/api/v1/blogcategory",blogCategoryRoutes);
 app.use("/api/v1/brand",brandRoutes);
 app.use("/api/v1/coupon",couponRoutes);
